@@ -1,76 +1,154 @@
-# 2D-Games-using-OpenGL-in-Python
-This repository contains multiple games of OpenGL that are built in Python, showcasing various graphical and interactive elements through OpenGL primitives and Python programming. Each game is designed to provide a unique interactive experience, focusing on user engagement and graphical representation.
+# 🧚 Fantasy Fairy Shooter
 
-![GitHub top language](https://img.shields.io/github/languages/top/shihabmuhtasim/2D-Games-using-OpenGL-in-Python?color=f5f5dc)
-![GitHub language count](https://img.shields.io/github/languages/count/shihabmuhtasim/2D-Games-using-OpenGL-in-Python?color=f5f5dc)
-![GitHub last commit](https://img.shields.io/github/last-commit/shihabmuhtasim/2D-Games-using-OpenGL-in-Python?color=f5f5dc)
-![GitHub repo file count](https://img.shields.io/github/directory-file-count/shihabmuhtasim/2D-Games-using-OpenGL-in-Python?color=f5f5dc)
-![GitHub repo size](https://img.shields.io/github/repo-size/shihabmuhtasim/2D-Games-using-OpenGL-in-Python?color=f5f5dc)
-![GitHub watchers](https://img.shields.io/github/watchers/shihabmuhtasim/2D-Games-using-OpenGL-in-Python?style=social)
+Game 2D bergaya *arcade shooter* yang dibuat dengan **Python** dan **PyOpenGL (GLUT)**. Kamu mengendalikan seorang peri bersayap yang menembakkan peluru ajaib untuk menghancurkan bunga, bintang, dan jamur yang berjatuhan dari langit. Kumpulkan skor setinggi mungkin dan jaga tiga nyawamu.
 
+![Python](https://img.shields.io/badge/Python-3.8%2B-3776AB?logo=python&logoColor=white)
+![PyOpenGL](https://img.shields.io/badge/PyOpenGL-GLUT-5586A4)
+![Resolusi](https://img.shields.io/badge/Window-800x600-lightgrey)
 
-![14](https://github.com/shihabmuhtasim/2D-Games-using-OpenGL-in-Python/assets/92597456/ba97ecbe-d31b-408a-83e3-c9a0e8df19dd)
+---
 
-## Space Shooter:
+## 🎮 Tampilan Game
 
-Space Shooter is an intense 2D game where multiple obstacles fall, and the player must navigate and destroy them using a spaceship. The spaceship can fire bullets diagonally or straight up, controlled by the keyboard arrows, and moved using the mouse. After destroying obstacles, gain special powers to create a circular ball for additional points. Manage your health with three hearts and aim for a high score before the game ends. Play, pause, restart, or close the game using on-screen buttons.
+| Layar | Yang ditampilkan |
+|-------|------------------|
+| **Layar awal** | Judul `FANTASY FAIRY SHOOTER` dan teks `Press SPACE to Start` di atas latar gradasi biru dengan bintang jatuh. |
+| **Saat bermain** | Peri di bagian bawah, peluru ajaib berwarna-warni, musuh yang jatuh, dan panel info di pojok kiri atas. |
+| **Game over** | Teks `GAME OVER`, `Final Score: <skor>`, dan `Press R to Restart`. |
 
-- **Mouse Functionality**: Move the spaceship using the mouse.
-- **Keyboard Arrows**: Fire bullets diagonally or straight up.
-- **Special Power**: Click to create a circular ball after destroying 5 obstacles.
-- **Difficulty**: Increases with more and faster obstacles.
-- **Lives**: 3 hearts representing health.
+**Panel info (pojok kiri atas)** menampilkan `Score:` berisi angka skor saat ini, dan `Nyawa:` berisi ikon hati merah sesuai sisa nyawa (maksimal 3).
 
-<img src="https://github.com/shihabmuhtasim/2D-Games-using-OpenGL-in-Python/assets/92597456/7a245296-37d4-4c17-ba36-ec2589c62ea0" width="500" height="400"/>
-<img src="https://github.com/shihabmuhtasim/2D-Games-using-OpenGL-in-Python/assets/92597456/16f959b5-3359-4f98-92a7-0918f016a339" width="500" height="400"/>
+---
 
-## Diamond Catcher:
+## 🕹️ Cara Bermain
 
-Catch falling diamonds before they hit the ground in this engaging 2D game. Use left and right arrow keys to move the catcher bowl horizontally. Each successfully caught diamond increases your score, while missed diamonds end the game. Experience an increase in falling speed over time, challenging your reflexes and timing.
+1. Jalankan game, lalu tekan **SPACE** untuk memulai.
+2. Gerakkan peri dengan **tombol panah** ke segala arah.
+3. **Tahan SPACE** untuk menembak terus-menerus.
+4. Tembak musuh sebelum mencapai dasar layar. Setiap musuh yang hancur memberi **+10 poin**.
+5. Jika nyawa habis, layar *Game Over* muncul. Tekan **R** untuk kembali ke layar awal.
 
-- **Keyboard Control**: Move the catcher using left and right arrow keys.
-- **Game Over**: Missing a diamond ends the game and freezes the catcher.
-- **Scoring**: Catch diamonds for points, visible on the console.
-- **Visuals**: Randomly colored diamonds falling from random positions.
+### Kontrol
 
-<img src="https://github.com/shihabmuhtasim/2D-Games-using-OpenGL-in-Python/assets/92597456/39bccc05-11bc-4c53-90e9-81dede562d47" width="500" height="400"/>
-<img src="https://github.com/shihabmuhtasim/2D-Games-using-OpenGL-in-Python/assets/92597456/a49ca168-7bd9-4893-9400-8dbcee61c6c5" width="500" height="400"/>
+| Tombol | Fungsi |
+|--------|--------|
+| ⬅️ ➡️ ⬆️ ⬇️ | Menggerakkan peri (kiri, kanan, atas, bawah) |
+| `SPACE` | Memulai game dan menembak (tahan untuk tembakan beruntun) |
+| `R` | Restart setelah *Game Over* |
 
-## Water Drops:
+---
 
-Simulate a serene water body with interactive water drops. Right-clicking generates growing circles, representing ripples or water drops. Control the growth speed of these circles with keyboard arrows, creating a dynamic and engaging water simulation.
+## ✨ Elemen Game
 
-- **Mouse Functionality**: Right-click to generate water drops.
-- **Growth Control**: Use UP and DOWN arrows to control growth speed.
-- **Pause/Resume**: Spacebar to pause and resume the simulation.
-- **Visibility**: Circles grow until they exceed the screen boundary.
+### Peri (pemain)
+- Digambar dari sayap biru muda (4 lingkaran), tubuh oval pink, kepala, dan mahkota kecil berwarna kuning.
+- Mulai di tengah bawah layar (posisi 400, 60).
+- Bergerak 10 piksel per frame dan dibatasi agar tidak keluar dari layar.
 
-<img src="https://github.com/shihabmuhtasim/2D-Games-using-OpenGL-in-Python/assets/92597456/3972ba3c-f9b8-4090-a875-c79f69c8dda4" width="500" height="400"/>
-<img src="https://github.com/shihabmuhtasim/2D-Games-using-OpenGL-in-Python/assets/92597456/935e9241-fcbf-40b2-9b18-559d30e0fc9f" width="500" height="400"/>
+### Peluru Ajaib
+- Sekali tekan menembakkan **3 peluru sekaligus**: kuning (tengah), cyan (kiri), dan magenta (kanan).
+- Tiap peluru berbentuk peri mini bersayap yang melaju ke atas.
+- Jeda antar tembakan 0,2 detik, jadi sekitar 5 salvo per detik jika SPACE ditahan.
 
-## House Rain:
+### Musuh
+Tiga jenis musuh muncul acak dari atas layar, masing-masing dengan warna acak:
 
-Create a cozy scene of a house in the rain, where you can control the rain's direction and the scene's ambiance. Use arrow keys to bend the rain and simulate day and night changes. This game combines visual appeal with interactive elements to simulate an ever-changing weather pattern around a simple house structure.
+| Jenis | Bentuk |
+|-------|--------|
+| 🌸 Bunga | Kelopak berwarna acak dengan pusat kuning |
+| ⭐ Bintang | Bintang bersudut lima |
+| 🍄 Jamur | Topi setengah lingkaran dengan batang krem |
 
-- **Rain Direction**: Left and right arrows to bend the rain.
-- **Ambiance Control**: Assign keys to shift between day and night.
-- **Visuals**: Basic house structure using GL primitives.
+Musuh jatuh lurus ke bawah dan muncul di posisi horizontal acak.
 
-<img src="https://github.com/shihabmuhtasim/2D-Games-using-OpenGL-in-Python/assets/92597456/ce7fab5f-8615-45d4-b4d2-61559f9804d3" width="500" height="400"/>
-<img src="https://github.com/shihabmuhtasim/2D-Games-using-OpenGL-in-Python/assets/92597456/355a9da6-752d-4dfc-b8b4-56dc7c9804d5" width="500" height="400"/>
+### Latar & Efek
+- **Latar** berupa gradasi biru langit.
+- **Bintang jatuh** berwarna putih kebiruan turun perlahan sebagai hiasan latar.
+- **Efek ledakan** berupa cincin kuning singkat di titik musuh yang tertembak.
 
-## Moving Balls:
+---
 
-An interactive box where random points are generated upon right-clicks, moving in various directions. Control the speed, pause the action, and enjoy the visual feast of blinking points. A game that's simple in concept but offers a rich interactive experience through basic graphical elements.
+## 📏 Aturan & Skor
 
-- **Point Generation**: Right-click to generate movable points.
-- **Speed Control**: UP and DOWN arrows to control the speed.
-- **Blinking Effect**: Left-click for points to blink.
-- **Pause/Resume**: Spacebar to freeze or unfreeze points.
+| Aturan | Nilai |
+|--------|-------|
+| Skor per musuh yang hancur | **+10** |
+| Nyawa awal | **3** (ditampilkan sebagai hati) |
+| Pengurang nyawa | Musuh lolos hingga melewati batas bawah layar |
+| Syarat kalah | Nyawa mencapai 0 |
+| Deteksi tabrakan | Jarak peluru ke pusat musuh kurang dari 30 piksel |
 
-<img src="https://github.com/shihabmuhtasim/2D-Games-using-OpenGL-in-Python/assets/92597456/831f1817-5a37-4681-9b5a-16b09fa2b845" width="500" height="400"/>
-<img src="https://github.com/shihabmuhtasim/2D-Games-using-OpenGL-in-Python/assets/92597456/b403e854-9d3d-4297-aeae-d427c0ec5278" width="500" height="400"/>
+---
 
-Each game in this repository aims to demonstrate the power of graphical programming in Python using OpenGL, focusing on interaction, physics, and visual aesthetics. Only midpoint line, circle algorithms, and point draw function were used to draw the objects in most of the games to enhance deep learning of the functionalities.  Dive into the code to learn more about implementing these interactive elements and enjoy enhancing or playing them!
+## 🛠️ Spesifikasi Teknis
 
-"# game-arcade-fantasy-shooter" 
+- **Ukuran window:** 800 × 600 piksel (judul window: *Fantasy Fairy Shooter*)
+- **Frame rate:** sekitar 30 FPS (timer 33 ms), dengan *double buffering*
+- **Proyeksi:** ortografik 2D (`gluOrtho2D`)
+- **Input:** keyboard saja (tombol ASCII dan tombol khusus GLUT)
+
+### Teknik Grafika
+Game ini memakai kombinasi algoritma rasterisasi dan primitif OpenGL:
+
+- **Midpoint Circle** (`circle.py`) untuk badan bintang latar dan efek ledakan.
+- **Midpoint Line** (`line.py`) untuk ekor bintang latar.
+- **Primitif OpenGL** (`GL_TRIANGLE_FAN`, `GL_POLYGON`, `GL_QUADS`, `GL_TRIANGLES`) untuk peri, peluru, musuh, hati, dan latar gradasi.
+
+---
+
+## 🚀 Instalasi & Menjalankan
+
+### Prasyarat
+- **Python 3.8+**
+- **PyOpenGL** dan **GLUT/freeglut**
+
+### 1. Install dependensi
+```bash
+pip install PyOpenGL PyOpenGL_accelerate
+```
+
+> Folder `OpenGL/` sudah disertakan di dalam proyek (termasuk `freeglut` untuk Windows). Jika game langsung berjalan, langkah ini bisa dilewati.
+
+Khusus **Linux**, pasang freeglut terlebih dahulu:
+```bash
+sudo apt install freeglut3-dev
+```
+Di **macOS**, GLUT sudah tersedia bawaan sistem.
+
+### 2. Jalankan game
+```bash
+cd "Fantasy Shooter Game"
+python main.py
+```
+
+---
+
+## 📁 Struktur Proyek
+
+```
+game arcade/
+├── README.md
+└── Fantasy Shooter Game/
+    ├── main.py       # Loop game, input, HUD, tabrakan, layar awal & game over
+    ├── classes.py    # Kelas Fairy, MagicBullet, FlowerEnemy, dan Star
+    ├── circle.py     # Algoritma Midpoint Circle
+    ├── line.py       # Algoritma Midpoint Line
+    └── OpenGL/       # Library PyOpenGL yang ikut disertakan
+```
+
+---
+
+## 📌 Ringkasan Kelas
+
+| Kelas | File | Peran |
+|-------|------|-------|
+| `Fairy` | `classes.py` | Karakter pemain |
+| `MagicBullet` | `classes.py` | Peluru yang ditembakkan pemain |
+| `FlowerEnemy` | `classes.py` | Musuh (bunga, bintang, atau jamur) |
+| `Star` | `classes.py` | Bintang jatuh pada latar |
+| `MidpointCircle()` | `circle.py` | Fungsi menggambar lingkaran |
+| `MidpointLine()` | `line.py` | Fungsi menggambar garis |
+
+---
+
+Selamat bermain! 🌟
